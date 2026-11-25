@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MABI ADMIN | Dashboard</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#09080e;color:#eee;font-family:Arial,sans-serif;display:flex;min-height:100vh}
+.sidebar{width:245px;background:#100e18;border-right:1px solid #292132;padding:25px 16px;position:fixed;height:100vh}
+.logo{font-size:25px;font-weight:bold;letter-spacing:5px;color:#c58aff;padding:10px}
+.logo small{display:block;font-size:10px;letter-spacing:4px;color:#888;margin-top:8px}
+.server{margin:28px 5px;padding:13px;background:#1b1725;border:1px solid #39254d;border-radius:10px;font-size:13px}
+.server span{color:#bb83ff}
+.navtitle{font-size:10px;color:#777;margin:25px 10px 10px;letter-spacing:2px}
+nav button{width:100%;padding:13px;margin:3px 0;border:0;border-radius:8px;background:transparent;color:#aaa;text-align:left;cursor:pointer;font-size:14px}
+nav button:hover,nav button.active{background:#38234d;color:#d9aaff}
+main{margin-left:245px;padding:35px;width:calc(100% - 245px);max-width:1500px}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:35px;gap:15px}
+h1{font-size:27px}
+.sub{color:#888;font-size:13px;margin-top:8px}
+.profile{padding:10px 15px;border:1px solid #352540;border-radius:9px;color:#d3a1ff;font-size:13px}
+.page{display:none}.page.active{display:block}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin:25px 0}
+.card,.panel{background:#12101a;border:1px solid #292333;border-radius:12px;padding:22px}
+.card small{color:#999}.number{font-size:30px;font-weight:bold;margin-top:13px;color:#d2a0ff}
+.panel{margin-top:20px}
+.panel h3{margin-bottom:18px}
+.item{padding:15px 0;border-bottom:1px solid #282331;color:#bbb;font-size:14px}
+.item:last-child{border:0}
+.tag{color:#c99aff;background:#30213f;padding:5px 9px;border-radius:6px;font-size:11px}
+.btn{background:#874ac0;color:white;border:0;padding:11px 16px;border-radius:7px;cursor:pointer;margin-top:12px}
+.btn:hover{background:#a66bdf}
+input,select,textarea{width:100%;background:#0b0a10;color:white;border:1px solid #393044;padding:12px;border-radius:7px;margin:8px 0}
+label{color:#aaa;font-size:13px}
+.empty{color:#888;font-size:14px;line-height:1.7}
+footer{color:#666;font-size:11px;margin-top:35px}
+@media(max-width:700px){.sidebar{width:75px;padding:15px 7px}.logo{font-size:12px;letter-spacing:1px}.logo small,.server,.navtitle{display:none}nav button{font-size:0;text-align:center;padding:15px 2px}nav button:before{content:"•";font-size:20px}main{margin-left:75px;width:calc(100% - 75px);padding:20px 12px}h1{font-size:21px}}
+</style>
+</head>
+<body>
+<aside class="sidebar">
+<div class="logo">MABI<small>ADMIN PANEL</small></div>
+<div class="server">◈ MABI SERVER<br><br><span>● Dashboard bereit</span></div>
+<div class="navtitle">HAUPTMENÜ</div>
+<nav>
+<button class="active" onclick="showPage('dashboard',this)">◈ Übersicht</button>
+<button onclick="showPage('members',this)">♙ Mitglieder</button>
+<button onclick="showPage('moderation',this)">⚒ Moderation</button>
+<button onclick="showPage('tickets',this)">▤ Tickets</button>
+<button onclick="showPage('sanctions',this)">⚑ Sanktionen</button>
+<div class="navtitle">SYSTEM</div>
+<button onclick="showPage('settings',this)">⚙ Einstellungen</button>
+</nav>
+</aside>
+<main>
+<header>
+<div><h1 id="heading">Dashboard</h1><p class="sub">Willkommen im MABI ADMIN CONTROL CENTER.</p></div>
+<div class="profile">♙ Adminbereich</div>
+</header>
+
+<section class="page active" id="dashboard">
+<h2>Server-Übersicht</h2>
+<p class="sub">Deine zentrale Verwaltungsoberfläche.</p>
+<div class="cards">
+<div class="card"><small>Mitglieder</small><div class="number">—</div><small>Wird mit Discord verbunden</small></div>
+<div class="card"><small>Offene Tickets</small><div class="number">—</div><small>Wird mit Discord verbunden</small></div>
+<div class="card"><small>Moderationen</small><div class="number">—</div><small>Wird mit Discord verbunden</small></div>
+<div class="card"><small>Bot-Status</small><div class="number" style="font-size:20px">Nicht verbunden</div><small>Mabi Bot</small></div>
+</div>
+<div class="panel"><h3>Willkommen bei MABI ADMIN</h3><p class="empty">Hier verwaltest du zukünftig deinen Discord-Server. Die Oberfläche ist vorbereitet. Die Live-Daten und Moderationsfunktionen werden im nächsten Schritt mit deinem Bot verbunden.</p></div>
+</section>
+
+<section class="page" id="members">
+<h2>Mitgliederverwaltung</h2>
+<div class="panel"><h3>Mitglied suchen</h3><input placeholder="Discord-Name oder ID eingeben"><button class="btn" onclick="alert('Die Discord-Verbindung wird noch eingerichtet.')">Mitglied suchen</button><p class="empty">Nach der Verbindung kannst du hier Mitglieder und ihre Rollen verwalten.</p></div>
+</section>
+
+<section class="page" id="moderation">
+<h2>Moderation</h2>
+<div class="panel"><h3>Moderationsaktion</h3>
+<label>Mitglied / Discord-ID</label><input id="moduser" placeholder="Mitglied eingeben">
+<label>Aktion</label><select id="modaction"><option>Timeout</option><option>Verwarnung</option><option>Kick</option><option>Ban</option></select>
+<label>Begründung</label><textarea id="modreason" placeholder="Grund der Moderation"></textarea>
+<button class="btn" onclick="alert('Noch nicht mit Discord verbunden. Diese Aktion wurde nicht ausgeführt.')">Aktion vorbereiten</button>
+</div>
+</section>
+
+<section class="page" id="tickets">
+<h2>Ticketverwaltung</h2>
+<div class="panel"><h3>Ticket-System</h3><p class="empty">Hier erscheinen nach der Bot-Verbindung deine offenen und geschlossenen Discord-Tickets.</p></div>
+</section>
+
+<section class="page" id="sanctions">
+<h2>Sanktionskatalog</h2>
+<div class="panel"><h3>Clan-Strafen</h3>
+<p class="empty">Hier kannst du später Verstöße, Geldstrafen und Beweisclips dokumentieren.</p>
+<div class="item">Verstoß 1 <span class="tag">Strafe festlegen</span></div>
+<div class="item">Verstoß 2 <span class="tag">Strafe festlegen</span></div>
+<div class="item">Verstoß 3 <span class="tag">Strafe festlegen</span></div>
+</div>
+</section>
+
+<section class="page" id="settings">
+<h2>Einstellungen</h2>
+<div class="panel"><h3>Systemeinstellungen</h3>
+<div class="item">Dashboard-Name <span class="tag">MABI ADMIN</span></div>
+<div class="item">Design <span class="tag">Dark / Purple</span></div>
+<div class="item">Discord Bot <span class="tag">Noch nicht verbunden</span></div>
+<p class="empty">Die sichere Discord-Anmeldung und die Admin-Berechtigungen richten wir als Nächstes ein.</p>
+</div>
+</section>
+<footer>MABI ADMIN PANEL · Version 1.0 · Discord Integration folgt</footer>
+</main>
+<script>
+function showPage(id,button){
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+button.classList.add('active');
+const names={dashboard:'Dashboard',members:'Mitglieder',moderation:'Moderation',tickets:'Tickets',sanctions:'Sanktionskatalog',settings:'Einstellungen'};
+document.getElementById('heading').textContent=names[id];
+}
+</script>
+</body>
+</html>
